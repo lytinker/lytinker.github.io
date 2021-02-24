@@ -25,13 +25,13 @@
   </script>
 <meta name="description" content="这是 Formal Reasoning About Programs 第四章 Semantics via Interpreters 的章后小结。这一章主要关注程序的 语义(semantic)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[FRAP 小结] Chapter 04.Semantics via Interpreters">
+<meta property="og:title" content="【FRAP 小结】Chapter 04.Semantics via Interpreters">
 <meta property="og:url" content="https://lytinker.github.io/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/frap-ch04/">
 <meta property="og:site_name" content="Tech Reactor">
 <meta property="og:description" content="这是 Formal Reasoning About Programs 第四章 Semantics via Interpreters 的章后小结。这一章主要关注程序的 语义(semantic)。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-22T17:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-23T10:08:31.962Z">
+<meta property="article:modified_time" content="2021-02-24T07:09:15.012Z">
 <meta property="article:author" content="Jerry Li">
 <meta property="article:tag" content="FRAP">
 <meta property="article:tag" content="读书笔记">
@@ -51,7 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>[FRAP 小结] Chapter 04.Semantics via Interpreters | Tech Reactor</title>
+<title>【FRAP 小结】Chapter 04.Semantics via Interpreters | Tech Reactor</title>
   
 
 
@@ -164,7 +164,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">4.1 代数表达式的语义</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">4.0 重要概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">4.1 代数表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E6%A0%88%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">4.2 堆栈机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E9%AB%98%E7%BA%A7%E5%91%BD%E4%BB%A4%E5%BC%8F%E8%AF%AD%E8%A8%80"><span class="nav-number">4.</span> <span class="nav-text">4.3 一个简单的高级命令式语言</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -259,7 +259,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [FRAP 小结] Chapter 04.Semantics via Interpreters
+          【FRAP 小结】Chapter 04.Semantics via Interpreters
         </h1>
 
         <div class="post-meta-container">
@@ -269,10 +269,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-02-23 01:00:00 / 修改时间：18:08:31" itemprop="dateCreated datePublished" datetime="2021-02-23T01:00:00+08:00">2021-02-23</time>
+      <time title="创建时间：2021-02-23 01:00:00" itemprop="dateCreated datePublished" datetime="2021-02-23T01:00:00+08:00">2021-02-23</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-24 15:09:15" itemprop="dateModified" datetime="2021-02-24T15:09:15+08:00">2021-02-24</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -299,16 +305,23 @@
     <div class="post-body" itemprop="articleBody">
         <p>这是 <a target="_blank" rel="noopener" href="http://adam.chlipala.net/frap/"><em>Formal Reasoning About Programs</em></a> 第四章 <em>Semantics via Interpreters</em> 的章后小结。这一章主要关注程序的 <strong>语义</strong>(semantic)。</p>
 <span id="more"></span>
-<h2 id="代数表达式的语义">4.1 代数表达式的语义</h2>
-<p>代数表达式 <span class="math inline">\(e\)</span> 的语义 <span class="math inline">\(\left[\!\!\left[e\right]\!\!\right]\)</span> 是一个作用在 <strong>有限映射</strong>(finite map) <span class="math inline">\(v\)</span> 上的递归函数. <span class="math inline">\(\left[\!\!\left[e\right]\!\!\right]v\)</span> 将 <span class="math inline">\(v\)</span> 映射到一个具体的值, 其中有限映射 <span class="math inline">\(v\)</span> 将表达式 <span class="math inline">\(e\)</span> 中的每个变量映射到该变量的值.</p>
-<p><strong>变量置换函数</strong> <span class="math inline">\([e&#39;/x]\)</span> 是一个作用在表达式 <span class="math inline">\(e\)</span> 上的函数. <span class="math inline">\([e&#39;/x]e\)</span> 将 <span class="math inline">\(e\)</span> 中所有的变量 <span class="math inline">\(x\)</span> 替换为 <span class="math inline">\(e&#39;\)</span>. 可以证明, 对任意的 <span class="math inline">\(e, e&#39;, x, v\)</span>, 有</p>
-<p><span class="math display">\[
-\left[\!\!\left[ [e&#39;/x]e \right]\!\!\right]v 
-= \left[\!\!\left[ e \right]\!\!\right](v[x \mapsto \left[\!\!\left[ e&#39; \right]\!\!\right]v])
-\tag{定理 4.1}
-\label{th_1}
-\]</span></p>
-<p>它表示翻译和置换是可以互换的. 等式左边表示对 <span class="math inline">\(x\)</span> 进行置换后进行翻译, 等式右边表示将 <span class="math inline">\(x\)</span> 的值直接映射至 <span class="math inline">\(e&#39;\)</span> 的语义作用在 <span class="math inline">\(v\)</span> 上的结果后再进行翻译, 这两者最后会得到同样的结果.</p>
+<h2 id="重要概念">4.0 重要概念</h2>
+<ul>
+<li>什么是语义, 怎样定义语言的语义.</li>
+<li>怎样证明作用在语言上的函数的正确性.</li>
+<li>什么是编译, 怎样证明编译过程的正确性.</li>
+<li>什么是优化, 怎样证明优化过程的正确性.</li>
+</ul>
+<p>这一章通过代数表达式, 堆栈机和一个简单的高阶命令式语言三个例子来说明这几个概念.</p>
+<h2 id="代数表达式">4.1 代数表达式</h2>
+<p>代数表达式 <span class="math inline">\(e\)</span> 的语义 <span class="math inline">\(\left[\!\!\left[ e \right]\!\!\right]\)</span> 是一个作用在 <strong>有限映射</strong>(finite map) <span class="math inline">\(v\)</span> 上的递归函数. <span class="math inline">\(\left[\!\!\left[ e \right]\!\!\right]v\)</span> 将 <span class="math inline">\(v\)</span> 映射到一个具体的值, 其中有限映射 <span class="math inline">\(v\)</span> 将表达式 <span class="math inline">\(e\)</span> 中的每个变量映射到该变量的值.</p>
+<p><strong>变量置换</strong>(variable substitution) <span class="math inline">\([e&#39;/x]\)</span> 是一个作用在表达式 <span class="math inline">\(e\)</span> 上的函数. <span class="math inline">\([e&#39;/x]e\)</span> 将 <span class="math inline">\(e\)</span> 中所有的变量 <span class="math inline">\(x\)</span> 替换为 <span class="math inline">\(e&#39;\)</span>. 我们可以通过 <strong>定理 4.1</strong> 来证明变量置换函数的正确性. 这里的正确性指的是, 对 <span class="math inline">\(x\)</span> 进行置换和将 <span class="math inline">\(x\)</span> 的值直接映射至 <span class="math inline">\(\left[\!\!\left[ e&#39; \right]\!\!\right]v\)</span>, 两者是等价的.</p>
+<h2 id="堆栈机">4.2 堆栈机</h2>
+<p><strong>堆栈机</strong>(stack machine)是由一组指令 <span class="math inline">\(i\)</span> 构成的序列 <span class="math inline">\(\overline{i}\)</span>. <span class="math inline">\(\left[\!\!\left[ \overline{i} \right]\!\!\right]\)</span> 是作用在有限映射 <span class="math inline">\(v\)</span> 和堆栈 <span class="math inline">\(s\)</span> 上的函数, <span class="math inline">\(\left[\!\!\left[ \overline{i} \right]\!\!\right] (v, s)\)</span> 返回指令执行结束后的堆栈.</p>
+<p>编译(compilation)是指将一种语言翻译成另一种语言的过程, 记做 <span class="math inline">\(\lfloor \ldots \rfloor\)</span>. 我们用 <span class="math inline">\(\lfloor e \rfloor\)</span> 将代数表达式 <span class="math inline">\(e\)</span> 编译为堆栈机 <span class="math inline">\(\overline{i}\)</span>. 可以通过 <strong>定理 4.2</strong> 和 <strong>引理 4.3</strong> 证明编译过程的正确性, 其中 <strong>定理 4.2</strong> 是 <strong>引理 4.3</strong> 的特殊情况. 这里的正确性指的是, 编译前后的两种语言在语义上是等价的.</p>
+<h2 id="一个简单的高级命令式语言">4.3 一个简单的高级命令式语言</h2>
+<p>我们定义一个简单的命令式语言 <span class="math inline">\(c\)</span>, <span class="math inline">\(\left[\!\!\left[ c \right]\!\!\right]\)</span> 作用在有限映射 <span class="math inline">\(v\)</span> 上并对 <span class="math inline">\(v\)</span> 进行操作.</p>
+<p><strong>优化</strong>(optimization)是指对一门语言进行变换, 且变换前后是同一种语言的过程, 记做 <span class="math inline">\(\vert \ldots \vert\)</span>. 我们用 <span class="math inline">\(\vert c \vert\)</span> 对命令式语言 <span class="math inline">\(c\)</span> 进行 <strong>循环展开</strong>(loop unrolling) 的优化. 可以通过 <strong>定理 4.4</strong> 和 <strong>引理 4.5</strong> 证明优化过程的正确性. 这里的正确性指的是, 优化前后语言的语义保持不变.</p>
 
     </div>
 
