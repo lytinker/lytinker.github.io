@@ -21,23 +21,25 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lytinker.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"lytinker.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="请想要转载本站文章的访客仔细阅读本声明!">
+<meta name="description" content="这是 Formal Reasoning About Programs 第四章 Semantics via Interpreters 的章后小结。这一章主要关注程序的 语义(semantic)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【置顶】版权声明">
-<meta property="og:url" content="https://lytinker.github.io/Welcome/0000-copyright/">
+<meta property="og:title" content="【FRAP 小结】Chapter 04.Semantics via Interpreters">
+<meta property="og:url" content="https://lytinker.github.io/frap-ch04/">
 <meta property="og:site_name" content="Tech Reactor">
-<meta property="og:description" content="请想要转载本站文章的访客仔细阅读本声明!">
+<meta property="og:description" content="这是 Formal Reasoning About Programs 第四章 Semantics via Interpreters 的章后小结。这一章主要关注程序的 语义(semantic)。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2099-12-30T17:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-23T04:00:23.395Z">
+<meta property="article:published_time" content="2021-02-22T17:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-24T09:10:34.067Z">
 <meta property="article:author" content="Jerry Li">
-<meta property="article:tag" content="Welcome">
+<meta property="article:tag" content="FRAP">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="Formal Verification">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://lytinker.github.io/Welcome/0000-copyright/">
+<link rel="canonical" href="https://lytinker.github.io/frap-ch04/">
 
 
 <script class="page-configurations">
@@ -49,7 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>【置顶】版权声明 | Tech Reactor</title>
+<title>【FRAP 小结】Chapter 04.Semantics via Interpreters | Tech Reactor</title>
   
 
 
@@ -149,7 +151,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -162,6 +164,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">重要概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">代数表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E6%A0%88%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">堆栈机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E9%AB%98%E7%BA%A7%E5%91%BD%E4%BB%A4%E5%BC%8F%E8%AF%AD%E8%A8%80"><span class="nav-number">4.</span> <span class="nav-text">一个简单的高级命令式语言</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -203,11 +206,11 @@
         <a href="mailto:tinker_code@outlook.com" title="E-Mail → mailto:tinker_code@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/lytinker" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;lytinker" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="https://www.zhihu.com/people/lilinsanity" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;lilinsanity" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
       </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
@@ -243,7 +246,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lytinker.github.io/Welcome/0000-copyright/">
+    <link itemprop="mainEntityOfPage" href="https://lytinker.github.io/frap-ch04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -256,7 +259,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【置顶】版权声明
+          【FRAP 小结】Chapter 04.Semantics via Interpreters
         </h1>
 
         <div class="post-meta-container">
@@ -267,14 +270,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2099-12-31 01:00:00" itemprop="dateCreated datePublished" datetime="2099-12-31T01:00:00+08:00">2099-12-31</time>
+      <time title="创建时间：2021-02-23 01:00:00" itemprop="dateCreated datePublished" datetime="2021-02-23T01:00:00+08:00">2021-02-23</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-02-23 12:00:23" itemprop="dateModified" datetime="2021-02-23T12:00:23+08:00">2021-02-23</time>
+        <time title="修改时间：2021-02-24 17:10:34" itemprop="dateModified" datetime="2021-02-24T17:10:34+08:00">2021-02-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -282,7 +285,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Welcome/" itemprop="url" rel="index"><span itemprop="name">Welcome</span></a>
+          <a href="/categories/FRAP/" itemprop="url" rel="index"><span itemprop="name">FRAP</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
         </span>
     </span>
 
@@ -296,9 +303,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>请想要转载本站文章的访客仔细阅读本声明!</p>
+        <p>这是 <a target="_blank" rel="noopener" href="http://adam.chlipala.net/frap/"><em>Formal Reasoning About Programs</em></a> 第四章 <em>Semantics via Interpreters</em> 的章后小结。这一章主要关注程序的 <strong>语义</strong>(semantic)。</p>
 <span id="more"></span>
-<p>本博客所有文章, 除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/3.0/">知识共享署名-相同方式共享 3.0 未本地化版本许可协议(CC BY-SA 3.0)</a> 进行许可. 转载请注明出处!</p>
+<h2 id="重要概念">重要概念</h2>
+<ul>
+<li>什么是语义, 怎样定义语言的语义.</li>
+<li>怎样证明作用在语言上的函数的正确性.</li>
+<li>什么是编译, 怎样证明编译过程的正确性.</li>
+<li>什么是优化, 怎样证明优化过程的正确性.</li>
+</ul>
+<p>这一章通过代数表达式, 堆栈机和一个简单的高阶命令式语言三个例子来说明这几个概念.</p>
+<h2 id="代数表达式">代数表达式</h2>
+<p>代数表达式 <span class="math inline">\(e\)</span> 的语义 <span class="math inline">\(\left[\!\!\left[ e \right]\!\!\right]\)</span> 是一个作用在 <strong>有限映射</strong>(finite map) <span class="math inline">\(v\)</span> 上的递归函数. <span class="math inline">\(\left[\!\!\left[ e \right]\!\!\right]v\)</span> 将 <span class="math inline">\(v\)</span> 映射到一个具体的值, 其中有限映射 <span class="math inline">\(v\)</span> 将表达式 <span class="math inline">\(e\)</span> 中的每个变量映射到该变量的值.</p>
+<p><strong>变量置换</strong>(variable substitution) <span class="math inline">\([e&#39;/x]\)</span> 是一个作用在表达式 <span class="math inline">\(e\)</span> 上的函数. <span class="math inline">\([e&#39;/x]e\)</span> 将 <span class="math inline">\(e\)</span> 中所有的变量 <span class="math inline">\(x\)</span> 替换为 <span class="math inline">\(e&#39;\)</span>. 我们可以通过 <strong>定理 4.1</strong> 来证明变量置换函数的正确性. 这里的正确性指的是, 对 <span class="math inline">\(x\)</span> 进行置换和将 <span class="math inline">\(x\)</span> 的值直接映射至 <span class="math inline">\(\left[\!\!\left[ e&#39; \right]\!\!\right]v\)</span>, 两者是等价的.</p>
+<h2 id="堆栈机">堆栈机</h2>
+<p><strong>堆栈机</strong>(stack machine)是由一组指令 <span class="math inline">\(i\)</span> 构成的序列 <span class="math inline">\(\overline{i}\)</span>. <span class="math inline">\(\left[\!\!\left[ \overline{i} \right]\!\!\right]\)</span> 是作用在有限映射 <span class="math inline">\(v\)</span> 和堆栈 <span class="math inline">\(s\)</span> 上的函数, <span class="math inline">\(\left[\!\!\left[ \overline{i} \right]\!\!\right] (v, s)\)</span> 返回指令执行结束后的堆栈.</p>
+<p>编译(compilation)是指将一种语言翻译成另一种语言的过程, 记做 <span class="math inline">\(\lfloor \ldots \rfloor\)</span>. 我们用 <span class="math inline">\(\lfloor e \rfloor\)</span> 将代数表达式 <span class="math inline">\(e\)</span> 编译为堆栈机 <span class="math inline">\(\overline{i}\)</span>. 可以通过 <strong>定理 4.2</strong> 和 <strong>引理 4.3</strong> 证明编译过程的正确性, 其中 <strong>定理 4.2</strong> 是 <strong>引理 4.3</strong> 的特殊情况. 这里的正确性指的是, 编译前后的两种语言在语义上是等价的.</p>
+<h2 id="一个简单的高级命令式语言">一个简单的高级命令式语言</h2>
+<p>我们定义一个简单的命令式语言 <span class="math inline">\(c\)</span>, <span class="math inline">\(\left[\!\!\left[ c \right]\!\!\right]\)</span> 作用在有限映射 <span class="math inline">\(v\)</span> 上并对 <span class="math inline">\(v\)</span> 进行操作.</p>
+<p><strong>优化</strong>(optimization)是指对一门语言进行变换, 且变换前后是同一种语言的过程, 记做 <span class="math inline">\(\vert \ldots \vert\)</span>. 我们用 <span class="math inline">\(\vert c \vert\)</span> 对命令式语言 <span class="math inline">\(c\)</span> 进行 <strong>循环展开</strong>(loop unrolling) 的优化. 可以通过 <strong>定理 4.4</strong> 和 <strong>引理 4.5</strong> 证明优化过程的正确性. 这里的正确性指的是, 优化前后语言的语义保持不变.</p>
 
     </div>
 
@@ -308,18 +331,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Welcome/" rel="tag"># Welcome</a>
+              <a href="/tags/FRAP/" rel="tag"># FRAP</a>
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+              <a href="/tags/Formal-Verification/" rel="tag"># Formal Verification</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/frap-ch04/" rel="prev" title="【FRAP 小结】Chapter 04.Semantics via Interpreters">
-                  <i class="fa fa-chevron-left"></i> 【FRAP 小结】Chapter 04.Semantics via Interpreters
-                </a>
             </div>
             <div class="post-nav-item">
+                <a href="/0000-copyright/" rel="next" title="【置顶】版权声明">
+                  【置顶】版权声明 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -368,7 +393,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jerry Li</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
     </div>
@@ -376,7 +401,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
